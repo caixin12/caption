@@ -1,0 +1,23 @@
+<!--pages/caption/index.wxml-->
+<!--<rich-text nodes="{{nodes}}" bindtap="tap"></rich-text>-->
+
+<scroll-view class="container" scroll-y="true" bindscrolltolower="bindDownLoad" bindscroll="scroll" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}}px;">
+  <view class="caption_list" wx:for="{{captionlist}}">
+    <view class="date" wx:if="{{!item.istoday && !item.isyesterday}}">{{item.dateMD}}</view>
+    <view class="week" wx:if="{{item.istoday}}">今日时讯</view>
+    <view class="week" wx:elif="{{item.isyesterday}}">昨日时讯</view>
+    <view class="week" wx:else>{{item.week}}</view>
+
+    <view class="caption_item" wx:for="{{item.items}}" data-key='{{item.id}}' bindtap="bindDetailpic">
+      <!--<image wx-if="{{item.suo_pic}}" src="https://h5.yunplus.com.cn/cases/weChatApplet/caption/captions/{{item.suo_pic}}" class=" {{imgHeight*(item.itemIndex)<scrollTop ? 'pic blur':'pic'}}" mode="widthFix"  lazy-load="true"></image>-->
+
+      <image wx-if="{{item.suo_pic}}" src="https://h5.yunplus.com.cn/cases/weChatApplet/caption/captions/{{imgHeight*(item.itemIndex)<=(scrollTop+chaheight) ? item.suo_pic :'loading.jpg'}}" class=" {{imgHeight*(item.itemIndex)<=(scrollTop+chaheight) ? 'pic blur':'pic'}}"
+        lazy-load="true"></image>
+
+    </view>
+    <view class='num'>
+      <image src='../../images/pic.png' class='pic_logo'></image> {{item.totalcount}}</view>
+
+  </view>
+  <view class="tip">© 公众号设计芭出品</view>
+</scroll-view>

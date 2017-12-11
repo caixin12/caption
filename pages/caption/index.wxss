@@ -1,0 +1,23 @@
+/* pages/caption/index.wxss */
+.caption_list {padding-top: 20rpx;padding-bottom: 40rpx;position: relative;}
+.caption_item{height:650rpx;border-radius: 20rpx;margin: 0 40rpx;position: relative;margin-bottom: 60rpx; }
+.caption_item image{border-radius: 20rpx;height: 650rpx ;width:670rpx }
+.date{line-height: 60rpx;height: 60rpx;color: #8e8e93;font-size: 28rpx;padding-left: 40rpx;font-weight: bold;}
+.week{height: 140rpx;line-height: 140rpx;font-size: 68rpx;font-weight: bold;padding-left: 40rpx;margin-bottom: 10rpx;}
+.pic{width: 100%;  }
+.blur{animation:blur 1.6s  ;-webkit-animation: blur 1.6s  ;}
+@keyframes blur
+{
+    0% {-webkit-filter: blur(10px);filter: blur(10px);  }
+    100% {-webkit-filter: blur(0px);filter: blur(0px); }
+}
+
+@-webkit-keyframes blur
+{
+    0% {-webkit-filter: blur(10px);filter: blur(10px);  }
+    100% {-webkit-filter: blur(0px);filter: blur(0px); }
+}
+.tip{font-size: 22rpx;text-align: center;padding:40rpx 0 30rpx 0;color:#8e8e93 }
+
+.num{background: #fff;height: 52rpx;line-height: 52rpx;color: #000;position: absolute;bottom:125rpx;right: 65rpx;width: 120rpx;font-size: 26rpx;text-align: center;border-radius: 20rpx;}
+.num .pic_logo{width: 32rpx;height: 32rpx;border-radius: 0;vertical-align: top;margin-top: 10rpx;}

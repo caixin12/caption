@@ -1,0 +1,108 @@
+<!--pages/captionDetail/index.wxml-->
+<view duration="500" current='{{current}}' vertical='true' class="{{iswhite==0?'':'bgblack'}} ">
+  <block wx:for="{{items}}">
+    <view wx:if="{{item.show}}"  class="swiper-item {{index<current?'mtop':(index>current?'mbottom':'mmiddle')}}  {{up==true&&upindex==index?'up':''}} {{down==true&&downindex==index?'down':''}}" bindanimationend="animationend" bindtouchstart="touchstart" bindtouchend="slide" >
+
+      <view class='detail'>
+        <view class="pic_con">
+          <image wx-if="{{item.zhu_pic}}" src="https://h5.yunplus.com.cn/cases/weChatApplet/caption/captions/{{item.zhu_pic}}" class="pic {{item.blur}}" mode="widthFix" lazy-load="true" data-pic='https://h5.yunplus.com.cn/cases/weChatApplet/caption/captions/{{item.detail_pic}}'
+            bindtap="bindpreviewImage"></image>
+        </view>
+        <view class="title">{{item.title}}
+          <view class='num'>{{item.index+1}}/{{item.totalcount}}</view>
+        </view>
+        <view class="info">{{item.info}}</view>
+        <view class="author">{{item.author}}</view>
+
+      </view>
+      <view class='countQ' bindtap='bindshowcount'>
+        <view class='prelist'>
+          <view class="logoitem">
+            <image src='{{userInfo.avatarUrl}}' mode="widthFix"></image>
+          </view>
+          <view class="logoitem" wx:for="{{list}}" wx-if="{{item.logo}}">
+            <image src='{{item.logo}}' mode="widthFix"></image>
+          </view>
+
+        </view>
+      </view>
+
+      <view class="commentBtn" bindtap='bindcomment'>
+        <image src='../../images/comment.png' mode="widthFix"></image>
+        <view class='hascomment' wx:if="{{hascomment}}"></view>
+      </view>
+      <view class="bgP" bindtap='bindchangebg'>
+
+        <image src='../../images/wbg.png' mode="widthFix" wx:if="{{iswhite==0}}"></image>
+        <image src='../../images/bbg.png' mode="widthFix" wx:else></image>
+
+      </view>
+
+      <button class="back" open-type="share" bindtap="bindshare">
+        <image src='../../images/share.png' mode="widthFix"></image>
+      </button>
+    </view>
+  </block>
+</view>
+<audio src="https://h5.yunplus.com.cn/cases/weChatApplet/caption/music/014.mp3" id="myAudio"></audio>
+
+<view class='mask' bindtap="bindmask" wx-if="{{!hidemask}}">
+  <image src='../../images/mask.png' mode="widthFix"></image>
+</view>
+
+<view wx-if="{{!hasmore}}" class='hasmore'>别拉了，光了啦！</view>
+
+<view wx-if="{{showcount}}" class='showcount'>已浏览{{Tcount}}次</view>
+
+<view wx-if="{{showtip}}" class='showtip'>{{isleft==0?'左右滑动':'上下滑动'}}</view>
+
+<view class='viewMask' wx-if="{{showComment}}">
+  <view class='comment'>
+    <view class='cClose' bindtap='bindCloseComment'>×</view>
+    <view class="commentLength" >{{commentlist.length>0?'共 '+commentlist.length+' 条评论':''}}</view>
+    <view class='commentList'>
+      <view class='commentItem' wx:for="{{commentlist}}">
+        <view class='commentUser'>
+          <image src='{{item.userLogo}}' class='commentLogo' mode="widthFix"></image>
+          <view class='commentNick'>{{item.userNick}}</view>
+          <view class='commentBrand'>{{item.brand}} {{item.daytip}}</view>
+          <view class='commentLike' bindtap='bindLikeComment' data-cid='{{item.id}}' id='{{item.id}}'>
+            {{item.likeNum==0?'':item.likeNum}}
+            <image src='{{item.islike?"../../images/likeC.png":"../../images/like.png"}}' mode="widthFix" data-cid='{{item.id}}' id='{{item.id}}'></image>
+          </view>
+        </view>
+        <view class='commentText'>{{item.comment}}</view>
+      </view>
+      <view class='lastDataTip'>{{commentlist.length>0?'到底啦~':'暂无评论，去抢个沙发？'}}</view>
+    </view>
+    <input type='text' class='commentInput' placeholder='点此处评论' confirm-type='send' bindconfirm='bindsends'></input>
+    <!--<view class='send'>发送</view>-->
+  </view>
+</view>
+
+<!--
+<view class="detailcon">
+  <view class='detail'>
+    <view class="pic_con">
+      <image wx-if="{{items.zhu_pic}}" src="https://h5.yunplus.com.cn/cases/weChatApplet/caption/captions/{{items.zhu_pic}}" class="pic blur" mode="widthFix" lazy-load="true" data-pic='https://h5.yunplus.com.cn/cases/weChatApplet/caption/captions/{{items.detail_pic}}'
+        bindtap="bindpreviewImage"></image>
+    </view>
+    <view class="title">{{items.title}}</view>
+    <view class="info">{{items.info}}</view>
+    <view class="author">{{items.author}}</view>
+
+  </view>
+  <view class='prelist'>
+    <view class="logoitem">
+      <image src='{{userInfo.avatarUrl}}' mode="widthFix"></image>
+    </view>
+    <view class="logoitem" wx:for="{{list}}" wx-if="{{item.logo}}">
+      <image src='{{item.logo}}' mode="widthFix"></image>
+    </view>
+
+  </view>
+  <button class="back" open-type="share" bindtap="bindshare">
+    <image src='../../images/share.png' mode="widthFix"></image>
+  </button>
+
+</view>-->

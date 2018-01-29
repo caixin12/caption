@@ -21,7 +21,7 @@
             <image src='{{userInfo.avatarUrl}}' mode="widthFix"></image>
           </view>
           <view class="logoitem" wx:for="{{list}}" wx-if="{{item.logo}}">
-            <image src='{{item.logo}}' mode="widthFix"></image>
+            <image src='{{item.logo}}'></image>
           </view>
 
         </view>

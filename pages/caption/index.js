@@ -25,6 +25,28 @@ Page({
       hasUserInfo: true
     })
   },
+
+  loadList(){
+    var that=this;
+    pageNum = 1;
+    pageNum_arr = [1]
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res.windowHeight)
+        that.setData({
+          scrollTop: 0,
+          scrollHeight: res.windowHeight,
+          imgHeight: res.windowWidth / 750 * (554 + 60),
+          chaheight: res.windowWidth / 750 * (554 + 60)
+
+        });
+        that.getCaptionlist()
+        //wx.hideNavigationBarLoading()
+      }
+    });
+  },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -54,23 +76,8 @@ Page({
       }
 
     }
-    pageNum = 1;
-    pageNum_arr = [1]
-    wx.getSystemInfo({
-      success: function (res) {
-        console.log(res.windowHeight)
-        that.setData({
-          scrollTop: 0,
-          scrollHeight: res.windowHeight,
-          imgHeight: res.windowWidth / 750 * (554 + 60),
-          chaheight: res.windowWidth / 750 * (554 + 60)
-
-        });
-        that.getCaptionlist()
-
-      }
-    });
-   
+    
+    that.loadList()
   },
 
   getCaptionlist: function () {
@@ -109,6 +116,20 @@ Page({
       }
     })
   },
+
+  //页面滑动到顶部
+  bindTopLoad(){
+    var that=this;
+    wx.showNavigationBarLoading()
+    setTimeout(function () {
+      
+      wx.hideNavigationBarLoading() //完成停止加载
+      that.loadList()
+    }, 1000);
+
+  },
+
+
   //页面滑动到底部
   bindDownLoad: function () {
     var that = this;

@@ -1,7 +1,6 @@
 <!--pages/caption/index.wxml-->
 <!--<rich-text nodes="{{nodes}}" bindtap="tap"></rich-text>-->
-
-<scroll-view class="container" scroll-y="true" bindscrolltolower="bindDownLoad" bindscroll="scroll" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}}px;">
+<scroll-view class="container" scroll-y="true" bindscrolltoupper="bindTopLoad" bindscrolltolower="bindDownLoad" bindscroll="scroll" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}}px;" upper-threshold='-100'>
   <view class="caption_list" wx:for="{{captionlist}}">
     <view class="date" wx:if="{{!item.istoday && !item.isyesterday}}">{{item.dateMD}}</view>
     <view class="week" wx:if="{{item.istoday}}">今日时讯</view>
